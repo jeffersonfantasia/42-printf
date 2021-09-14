@@ -6,7 +6,7 @@
 /*   By: jfranchi <jfranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 19:24:59 by jfranchi          #+#    #+#             */
-/*   Updated: 2021/08/30 22:37:24 by jfranchi         ###   ########.fr       */
+/*   Updated: 2021/09/13 21:54:44 by jfranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int	ft_printf(const char *str, ...)
 	va_list	args;
 	char	*input;
 	int		i;
-	int		j;
+	int		printed;
 
 	input = (char *)str;
 	va_start(args, str);
 	i = 0;
-	j = 0;
+	printed = 0;
 	while (*input)
 	{
 		if (input[i] == '%')
@@ -55,15 +55,22 @@ int	ft_printf(const char *str, ...)
 			if (input[i] == 'c')
 				write(1, &i, 1);
 			else if (input[i] == 's')
-
+				printed += putstr(va_arg(args, (char *));
 			else if (input[i] == 'p')
-
+				printed += va_arg(args, size_t);
+				//retorna endereço do ponteiro - prefixo 0x - valor hexadecimal
 			else if (input[i] == 'd' || input[i] == 'i')
-
+				// putnbr
+				printed += va_arg(args, int);
 			else if (input[i] == 'u')
-
+				// putnbr sem ser negativo unsined INT
+				printed += va_arg(args, unsigned int);
 			else if (input[i] == 'x')
-
+			//retorna valor hexadecimal
+			printed +=  va_arg(args, unsigned int);
+			else if (input[i] == 'X')
+			//retorna valor hexadecimal as letras em maiusculo TO_UPPER
+			printed +=  va_arg(args, unsigned int);
 			else if (input[i] == '%')
 				write(1, '%', 1);
 			else NULL;
@@ -76,5 +83,5 @@ int	ft_printf(const char *str, ...)
 		}
 	}
 	va_end(args);
-	return (j)
+	return (printed)
 }
