@@ -6,13 +6,13 @@
 /*   By: jfranchi <jfranchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 19:24:59 by jfranchi          #+#    #+#             */
-/*   Updated: 2021/09/13 21:54:44 by jfranchi         ###   ########.fr       */
+/*   Updated: 2021/09/14 22:07:29 by jfranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void	ft_print(int n)
+/*
+void	ft_print_int(int n)
 {
 	char p;
 
@@ -20,8 +20,14 @@ void	ft_print(int n)
 	write(1, &p, 1);
 }
 
-void	ft_putnbr(int nb)
+size_t	ft_putnbr(int nb)
 {
+	char	str[12];
+	int		i;
+	int		len;
+
+	i = 0;
+	len = 0;
 	if (nb == -2147483648)
 		write(1, "-2147483648", 11);
 	if (nb < 0)
@@ -33,9 +39,10 @@ void	ft_putnbr(int nb)
 	{
 		ft_putnbr(nb / 10);
 	}
-	ft_print(nb % 10);
+	ft_print_int(nb % 10);
+	return (len);
 }
-
+*/
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
@@ -53,15 +60,15 @@ int	ft_printf(const char *str, ...)
 		{
 			i++;
 			if (input[i] == 'c')
-				write(1, &i, 1);
-			else if (input[i] == 's')
-				printed += putstr(va_arg(args, (char *));
+				printed += write(1, &i, 1);
+			/*else if (input[i] == 's')
+				printed += putstr(va_arg(args, char *));
 			else if (input[i] == 'p')
 				printed += va_arg(args, size_t);
 				//retorna endereço do ponteiro - prefixo 0x - valor hexadecimal
 			else if (input[i] == 'd' || input[i] == 'i')
 				// putnbr
-				printed += va_arg(args, int);
+				printed += ft_putnbr(va_arg(args, int);
 			else if (input[i] == 'u')
 				// putnbr sem ser negativo unsined INT
 				printed += va_arg(args, unsigned int);
@@ -75,13 +82,15 @@ int	ft_printf(const char *str, ...)
 				write(1, '%', 1);
 			else NULL;
 
+
+		*/
 		}
 		else
 		{
-			write(1, &input[i], 1);
+			printed += write(1, &input[i], 1);
 			i++;
 		}
 	}
 	va_end(args);
-	return (printed)
+	return (printed);
 }

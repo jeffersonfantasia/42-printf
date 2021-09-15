@@ -6,7 +6,7 @@
 #    By: jfranchi <jfranchi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/30 19:25:06 by jfranchi          #+#    #+#              #
-#    Updated: 2021/08/30 19:36:21 by jfranchi         ###   ########.fr        #
+#    Updated: 2021/09/14 22:20:52 by jfranchi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,10 +40,15 @@ $(NAME): $(OBJS)
 
 clean:
 	@rm -vf *.o
+	@rm -vf *.out
+
 
 fclean:	clean
 	@rm -vf $(NAME)
-	@rm -vf bonus
+	@rm -vf main
+
+go:
+	$(CC) $(FLAGS) main.c -o main && ./main
 
 re:	fclean	all
 
